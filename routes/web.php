@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
+Route::post('/try','ClientController@Addusers')->name('registerpost');
+Route::get('/login', 'TripController@view_admin')->name('login');
+Route::post('/admin', 'TripController@submit_trip')->name('add');
 Route::get('/register', function () {
     return view('register');
 })->name('register');
-Route::get('/admin', function () {
-    return view('admin');
-});
+Route::post('/submit','ClientController@login');
+Route::get('/admin/government/{id}','TripController@selectSomeTrips');
+Route::get('/admin','TripController@selectAllTrips')->name('admin');
+Route::post('/admin/filter_search','TripController@filtertrips');
+//Route::post('/submit','ClientController@check_admin');

@@ -12,8 +12,8 @@
                             <div align="center" class="card-header">Login page</div>
                             <div class="card-body">
 
-                                <form class="form-horizontal" method="post" action="#">
-
+                            <form class="form-horizontal" method="post" action="submit">
+                                {{csrf_field()}} 
 
                                     <div class="form-group">
                                         <label for="email" class="cols-sm-2 control-label">Your Email</label>
@@ -30,18 +30,25 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" minlength="8" required="required" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                                                <input type="password" minlength="7" required="required" class="form-control" name="password" id="password" placeholder="Enter your Password" />
                                             </div>
                                         </div>
                                     </div>
 </br>
                                     <div class="form-group ">
-                                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Register" name="submit" />
+                                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Log In"  name="submit" />
                                     </div>
                                     <div class="login-register">
                                         <a href="register">Need an account? Register here!</a>
                                     </div>
                                 </form>
+                                <script>
+                                var msg = '{{Session::get('alert')}}';
+                                var exist = '{{Session::has('alert')}}';
+                                if(exist){
+                                alert(msg);
+                                }
+                            </script>
                             </div>
 
                         </div>

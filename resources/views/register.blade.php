@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -32,16 +35,28 @@
 
                 // If same return True.
                 else{
-                    alert("Password Match: Welcome to GeeksforGeeks!")
+                 //   alert("Password Match: Welcome to GeeksforGeeks!")
                     return true;
                 }
             }
         </script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <title>Document</title>
+</head>
+<body>
+</br>
+</br>
+</br>
+<div class="container">
+@if( $success ?? '' )
 
-</br>
-</br>
-</br>
+<div>{{$success ?? ''}}</div>
 
+
+@endif
+</div>
+<br>
+<br>
 <div class="container">
 <div class="row justify-content-center">
                     <div class="col-md-8">
@@ -49,8 +64,8 @@
                             <div align="center" class="card-header">Register Here</div>
                             <div class="card-body">
 
-                                <form class="form-horizontal" method="post" onSubmit = "return checkPassword(this)" action="#">
-
+                                <form class="form-horizontal"  action={{Route("registerpost")}} method="post" onSubmit = "return checkPassword(this)" }>
+                                @csrf
                                     <div class="form-group">
                                         <label for="name" class="cols-sm-2 control-label">First Name</label>
                                         <div class="cols-sm-10">
@@ -70,11 +85,29 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                    <label for="SSN" class="cols-sm-2 control-label">SSN</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                <input type="text" required="required" class="form-control" name="SSN" id="SSN" placeholder="Enter your SSN" value="<?php if (isset($_SESSION['log_Email'])) echo $_SESSION['log_Email'];?>"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="username" class="cols-sm-2 control-label">Age</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                                 <input type="number" min="1" required="required" max="200" class="form-control" name="age" id="age" placeholder="Age" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="nationality" class="cols-sm-2 control-label">nationality</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                <input type="text" required="required" class="form-control" name="nationality" id="email" placeholder="Enter your nationality" value="<?php if (isset($_SESSION['log_Email'])) echo $_SESSION['log_Email'];?>"/>
                                             </div>
                                         </div>
                                     </div>

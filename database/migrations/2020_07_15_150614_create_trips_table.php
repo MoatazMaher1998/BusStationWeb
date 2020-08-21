@@ -19,6 +19,7 @@ class CreateTripsTable extends Migration
             $table->string('from_city_name');
             $table->string('to_city_name');
             $table->date('trip_date');
+            $table->integer('price');
             $table->integer('duration');
             $table->string('time');
             $table->integer('capacity');

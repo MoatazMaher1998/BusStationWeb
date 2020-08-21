@@ -20,6 +20,23 @@ Route::get('/book', function () {
 Route::get('/trips', function () {
     return view('trips');
 })->name('trips');
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
+Route::get('/faq', function () {
+    return view('faq');
+});
+Route::get('/Contactus', function () {
+    return view('Contactus');
+});
+Route::get('/terms', function () {
+    return view('terms');
+});
+Route::get('/qrcodeform', function () {
+    return view('qrcodeform');
+});
+Route::post('/qrcodeform', 'TripController@qrcodeform')->name('qrcodeform');
+
 
 Route::get('/ticket', function () {
     return view('ticket');

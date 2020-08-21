@@ -177,10 +177,16 @@ li.bus3::before {
 		<input class="form-control" type="tel" name="phone" id="phone" maxlength="11" minlength="11" required>	<br>
 		<label class="control-label" style="color: #FED189 ; font-size: 20px"><strong>Nationality</strong></label>
 		<input class="form-control" type="text" name=" nationality" required>	<br>
-		<label class="control-label" style="color: #FED189 ; font-size: 20px"><strong>Seat code</strong></label>
+		<label class="control-label" style="color: #FED189 ; font-size: 20px"><strong>Age</strong></label>
+		<input class="form-control" type="text" name=" age" required>	<br>
 		
+			</div>
+	 <div style="width: 100% ; float: left">
+	 <label class="control-label" style="color: #FED189 ; font-size: 20px"><strong>Seat code</strong></label><br>
+		 
 		@for ($i = 0; $i < $seats; $i++)
-		<select class="form-control" name = "select{{$i}}" id="select{{$i}}" onchange ="reserve({{$i}});" >
+		<div style="float: left ; margin: 10px">
+		<select class="form-control" style="width: auto" name = "select{{$i}}" id="select{{$i}}" onchange ="reserve({{$i}});" >
 		<option value="" selected></option>
 		<option value="A1">A1</option>
 		<option value="A2">A2</option>
@@ -223,20 +229,24 @@ li.bus3::before {
 		<option value="K3">K3</option>
 		<option value="K4">K4</option>
 		<option value="K5">K5</option>
-			
-			
-		</select>	<br>
+		</select>
+	 	 </div>
+
 		@endfor
+		 
+	 
 	
-			</div>
+	 </div>
+	 
 		<br>
 		<div style="width: 100%">
 
-					<h2 style="color: aliceblue ; float: left ; margin-top: 50px;margin-right: 100px">Choose seats<br>
+					<h2 style="color: aliceblue ; float: left ; margin-top: 50px;margin-right: 100px ; padding: 10px">Choose seats<br>
 
-					<li class="bus1" style="font-size: 15px ; color: aliceblue ; padding-left: : 5px" >Available</li><br>
-          			<li class="bus2" style="font-size: 15px ; color: aliceblue ; padding-left: : 5px" >Unavailable</li><br>
-          			<li class="bus3" style="font-size: 15px ; color: aliceblue ; padding-left: : 5px" >Booked</li>
+					<li class="bus1" style="font-size: 15px ; color: aliceblue ; padding-left: : 5px ; margin: 10px ; float: left" >Available</li>
+          			<li class="bus2" style="font-size: 15px ; color: aliceblue ; padding-left: : 10px ; margin: 10px ; float: left" >Unavailable</li>
+          			<li class="bus3" style="font-size: 15px ; color: aliceblue ; padding-left: : 10px ; margin: 10px
+											; float: left" >Booked</li>
 
 			</h2><br>
 
@@ -244,9 +254,8 @@ li.bus3::before {
 	<!--	 <input type="checkbox" class="form-control " disabled name="a1">
 			<label for="a1" >A1</label>  
 -->
-	 <div align="center" style="color: aliceblue" class="table-responsive">
-		 <table cellpadding="10px" cellspacing="20px">
-			 <th>
+	 <div align="center" style="color: aliceblue ; margin: 20px" class="table-responsive">
+		 <table cellpadding="5px" style="border: solid">
 			 <tr>
 				 <td><li class="bus1" style="font-size: 15px" id="A4">A4</li></td>
 				 <td><li class="bus1" style="font-size: 15px" id="B4">B4</li></td>
@@ -312,7 +321,6 @@ li.bus3::before {
 				 <td><li class="bus1" style="font-size: 15px" id="J1">J1</li></td>
 				 <td><li class="bus1" style="font-size: 15px" id="K1">K1</li></td>
 			 </tr>
-			 </th>
 			
 		 		 
 			 </table>
@@ -323,7 +331,7 @@ li.bus3::before {
 	 
 			
 	 
-	 			<div class="ticket" style="width: 25% ;height: 60% ; color: white; font-size: 16px ; background-color: hsla(0,0%,0%,0.83);border-radius: 25px ; margin: 5px ; position: fixed ;left: 73%">
+	 			<div id="ticket" class="ticket" style="width: 25% ;height: auto ; color: white; font-size: 16px ; background-color: hsla(0,0%,0%,0.83);border-radius: 25px ; margin: 5px; position: fixed ;left: 73%">
 				 @foreach ($tripinfo  as $trip)
 					<div>
 					<h4 style="margin: 20px ; color: #FED189">Trip ID : {{$trip->id}}</h4>
@@ -353,9 +361,34 @@ li.bus3::before {
 			@endforeach
 			
 			<div align="center"  >
-				<button type="submit" form="booking" class="btn btn-primary" style=" width: 70%	 ; height: 30%  "><h4><strong>Book now!</strong></h4></button>
+				<button type="submit" form="booking" class="btn btn-primary" style=" width: 70%	 ; height: 30% ; margin: 20px "><h4><strong>Book now!</strong></h4></button>
 			</div>
 		</div>
+
+<script>
+var ticket = document.querySelector('#ticket');
+var footer = document.querySelector('#footer');
+
+function checkOffset() {
+  function getRectTop(el){
+    var rect = el.getBoundingClientRect();
+    return rect.top;
+  }
+  
+  if((getRectTop(ticket) + document.body.scrollTop) + ticket.offsetHeight >= (getRectTop(footer) + document.body.scrollTop) - 10)
+    ticket.style.position = 'absolute';
+  if(document.body.scrollTop + window.innerHeight < (getRectTop(footer) + document.body.scrollTop))
+    ticket.style.position = 'fixed'; // restore when you scroll up
+  
+  ticket.innerHTML = document.body.scrollTop + window.innerHeight;
+}
+
+document.addEventListener("scroll", function(){
+  checkOffset();
+});	
+	
+</script>
+
 
 		@foreach ($chairs  as $reserved)
 		<script type="text/javascript">
@@ -389,7 +422,7 @@ li.bus3::before {
 			
 	</section>
 	</section>
-	<footer class="panel-footer" style="background-color: #1A2732 ; height: 200px">
+	<footer id="footer" class="panel-footer" style="background-color: #1A2732 ; height: 150px ">
 		<div align="center" style="padding-left:50%">
 	      <a href="" class="logo" style="font-style: italic"><strong>JMS</strong> <span class="lite">BUS</span></a><br>
 		</div>

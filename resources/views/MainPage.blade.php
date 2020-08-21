@@ -66,12 +66,14 @@
 
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" style="font-style: italic;color:#E9FF33" href="#"><strong>JMS</strong> <span class="lite">BUS</span></a>
+        <a class="navbar-brand" style="font-style: italic;color:#E9FF33" href="http://localhost/Bus_Station_Sprint_3/public/"><strong>JMS</strong> <span class="lite">BUS</span></a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="">About us</a></li>
-        <li><a href="">Contact</a></li>
+        <li class="active"><a href="http://localhost/Bus_Station_Sprint_3/public/">Home</a></li>
+        <li><a href="http://localhost/Bus_Station_Sprint_3/public/aboutus">About us</a></li>
+        <li><a href="http://localhost/Bus_Station_Sprint_3/public/Contactus">Contact</a></li>
+        <li><a href="http://localhost/Bus_Station_Sprint_3/public/terms">terms</a></li>
+        <li><a href="http://localhost/Bus_Station_Sprint_3/public/qrcodeform">Qrcode</a></li>
 
       </ul>
     </div>

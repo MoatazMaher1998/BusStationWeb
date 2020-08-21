@@ -60,9 +60,24 @@
       <!--logo start-->
       <a href="" class="logo" style="font-style: italic"><strong>JMS</strong> <span class="lite">BUS</span></a>
       <!--logo end-->
+   
+      <div>
+    <a href="#addTrip">
+							<button  type="submit" class="btn btn-default tooltips" title="Register new admin" style="width: auto; float: right;margin-right:10px ;margin-top:14px">Add Trips</button>
+		</a>
+</div>
 
-     
-    
+ <form name="register" action="register" method = "POST">
+ @csrf
+		<input type="submit" value=" register"class="btn btn-default tooltips" style="width: auto; float: right;margin-right:10px ;margin-top:14px">
+    <A HREF="javascript:document.register.submit()"></A> 
+  </form> 
+  <form name="alltrips" method = "POST" action="admin_all_trips" class="panel-body">
+            @csrf
+            <button type="submit" class="btn btn-default tooltips" title="Register new admin" style="width: auto; float: right;margin-right:10px">Show all Trips</button>
+            <A HREF="javascript:document.alltrips.submit()"></A> 
+          </form>
+
     </header>
     <!--header end-->
 
@@ -76,71 +91,93 @@
 			       <div align="center" style="padding-up:2"> <h2 style="color: white" ><strong >Cities</strong></h2></div>
 
           <li class="">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/hurghada" class="" >
-                          <span>Hurghada</span>
-            </a>
+           <form name="submitForm" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="hurghada">
+            <A HREF="javascript:document.submitForm.submit()">Hurghada</A>  
+            </form> 
           </li>
           <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/sharmelsheikh" class="">
-                          <span>Sharm El Sheikh</span>
-		    </a>
+          <form name="submitForm1" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="sharmelsheikh">
+            <A HREF="javascript:document.submitForm1.submit()">Sharm El Sheikh</A>  
+            </form> 
           </li>
 				
           <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/cairo" class="">
-                          <span>Giza\Cairo</span>
-            </a>
-          
+          <form name="submitForm2" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="cairo">
+            <A HREF="javascript:document.submitForm2.submit()">Cairo / Giza</A>  
+            </form>
           </li>
           <li>
-            <a class="" href="http://localhost/Laravel/Bus_Station/public/admin/government/alexandria">
-                          <span>Alexandria</span>
-            </a>
+          <form name="submitForm3" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="alexandria">
+            <A HREF="javascript:document.submitForm3.submit()">Alexandria</A>  
+            </form> 
           </li>
           <li>
-            <a class="" href="http://localhost/Laravel/Bus_Station/public/admin/government/dahab">
-                          <span>Dahab</span>
-            </a>
-
+          <form name="submitForm4" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="dahab">
+            <A HREF="javascript:document.submitForm4.submit()">Dahab</A>  
+            </form> 
           </li>
 
           <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/sohag" class="">
-                          <span>Sohag</span>
-            </a>
+          <form name="submitForm5" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="sohag">
+            <A HREF="javascript:document.submitForm5.submit()">Sohag</A>  
+            </form> 
             
           </li>
 
          
  		  <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/northcost" class="">
-                          <span>North Cost</span>
-            </a>
+       <form name="submitForm6" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="northcost">
+            <A HREF="javascript:document.submitForm6.submit()">North Cost</A>  
+            </form> 
           </li>
  		  <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/luxor" class="">
-                          <span>Luxor</span>
-            </a>
+       <form name="submitForm7" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="luxor">
+            <A HREF="javascript:document.submitForm7.submit()">Luxor</A>  
+            </form> 
           </li>				
  		  <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/qena" class="">
-                          <span>Qena</span>
-            </a>
+       <form name="submitForm8" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="qena">
+            <A HREF="javascript:document.submitForm8.submit()">Qena</A>  
+            </form> 
           </li>
  		  <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/tanta" class="">
-                          <span>Tanta</span>
-            </a>
+       <form name="submitForm9" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="tanta">
+            <A HREF="javascript:document.submitForm9.submit()">Tanta</A>  
+            </form> 
           </li>
  		  <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/matrouh" class="">
-                          <span>Matrouh</span>
-            </a>
+       <form name="submitForm10" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="matrouh">
+            <A HREF="javascript:document.submitForm10.submit()">Matrouh</A>  
+            </form> 
           </li>
  		  <li class="sub-menu">
-            <a href="http://localhost/Laravel/Bus_Station/public/admin/government/asyout" class="">
-                          <span>Asyout</span>
-            </a>
+       <form name="submitForm11" method="POST" action="admin_filter">
+            @csrf
+            <input type="hidden" name="city" value="asyout">
+            <A HREF="javascript:document.submitForm11.submit()">Asyout</A>  
+            </form> 
           </li>
 				
 				
@@ -162,24 +199,67 @@
           <div class="col-sm-6 col-md-12">
             <section class="panel">
             <div style="padding-top: 20">
-        <form class="panel-body"  style="width: 100%" action="admin/filter_search" method="post">
+        <form class="panel-body"  style="width: 100%" action="filter_search" method="post">
         @csrf
-	          <div  style="float: left ; width: 30%" class="panel-body">
-					<label for="onDate" class="control-label col-lg-2" style="width: auto">select the day:</label>
-					<input type="date" name="date" class="form-control" width="50%" required>
+	           <div  style="float: left; width: 15%" class="panel-body" >
+             <label for="onDate" class="control-label col-lg-2" style="width: auto">From:</label>
+             <select name="fromCity" class="form-control" required>
+          
+				  <option value="hurghada">Hurghada</option>
+				  <option value="sharmelsheikh">Sharm El Sheikh</option>
+				  <option value="cairo">Giza\Cairo</option>
+				  <option value="alexandria">Alexandria</option>
+				  <option value="dahab">Dahab</option>
+				  <option value="sohag">Sohag</option>
+				  <option value="northcost">North Cost</option>
+				  <option value="luxor">Luxor</option>
+				  <option value="qena">Qena</option>
+				  <option value="tanta">Tanta</option>
+				  <option value="matrouh">Matrouh</option>
+				  <option value="asyout">Asyout</option>
+				</select>
+          </select>
+          </div>
+          <div  style="float: left; width: 15%" class="panel-body" >
+          <label for="onDate" class="control-label col-lg-2" style="width: auto">To:</label>
+          <select name="toCity" class="form-control" required>
+          
+				  <option value="hurghada">Hurghada</option>
+				  <option value="sharmelsheikh">Sharm El Sheikh</option>
+				  <option value="cairo">Giza\Cairo</option>
+				  <option value="alexandria">Alexandria</option>
+				  <option value="dahab">Dahab</option>
+				  <option value="sohag">Sohag</option>
+				  <option value="northcost">North Cost</option>
+				  <option value="luxor">Luxor</option>
+				  <option value="qena">Qena</option>
+				  <option value="tanta">Tanta</option>
+				  <option value="matrouh">Matrouh</option>
+				  <option value="asyout">Asyout</option>
+				</select>
+          </select>
+          </div>
+	        <div  style="float: left ; width: 20%" class="panel-body">
+					<label for="onDate" class="control-label col-lg-2" style="width: auto">From day:</label>
+					<input type="date" name="fromDay" class="form-control" width="50%" required>
 					</div>
+          <div  style="float: left ; width: 20%" class="panel-body">
+					<label for="onDate" class="control-label col-lg-2" style="width: auto">From day:</label>
+					<input type="date" name="toDay" class="form-control" width="50%" required>
+          	</div>
 					
-	          <div  style="float: left; width: 30%" class="panel-body" >
+	          <div  style="float: left; width: 15%" class="panel-body" >
 					<label for="onDate" class="control-label col-lg-2" style="width: auto">select class:</label>
-					<select name="selectClass" class="form-control" required>
+					<select name="busClass" class="form-control" required>
 					<option>First</option>
 					<option>Second</option>
           </select>
           </div>
-					<div style="float: none" class="panel-body" >
-									  <button type="submit" class="btn btn-primary" style="margin-top: 23px;margin-left: 50px">Search</button>
-
-					</div>
+					
+          <div  style="float: left; width: 15%" class="panel-body" >
+          <label for="onDate" class="control-label col-lg-2" style="width: auto ;color:white">search</label>
+          <input type="submit" value="Search" class="btn btn-primary" style="width: 90% ; margin-left: 10px ; font-size: 15px">
+          </div>
 					</form>
 				</div>
               <header class="panel-heading">
@@ -224,11 +304,11 @@
         </div>
       
        
-		  						  	<div align="center"><h1><strong>Add Trip</strong></h1></div>
+		  						  	<div align="center" id="addTrip"><h1><strong>Add Trip</strong></h1></div>
 
         <div class="row">
 
-<form action="{{route('add')}}" style="width: 100%" class="panel-body" method="post">
+<form action="{{route('Add_Trip')}}" style="width: 100%" class="panel-body" method="post">
 	          <div class="panel-body" style="float: left ; width: 50%"  >
             @csrf
 			

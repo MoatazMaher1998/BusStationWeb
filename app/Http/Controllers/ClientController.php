@@ -39,12 +39,13 @@ class ClientController extends Controller
             $success="Duplicate in SSN Or Email";
           }
   
-          return view('register',['success'=>$success]);
+           return app('App\Http\Controllers\TripController')->selectAllTrips();
        
     }
 
 
     public function login(Request $request){
+     //   dd($request);
         $email = $request->input('email');
        // $hashed = Hash::make($request->input('password'), [
         //    'rounds' => 12,
@@ -54,7 +55,8 @@ class ClientController extends Controller
         try{
             $userRecord = client::where([['email','=',$email],['password','=', $password]])->first();
             if($userRecord!=NULL){
-                if($userRecord->isadmin == 1){return Redirect::route('admin');}
+                
+                if($userRecord->isadmin == 1){return app('App\Http\Controllers\TripController')->selectAllTrips();}
                 else {return view('client');}
             
             }
@@ -64,10 +66,13 @@ class ClientController extends Controller
             }
         }
         catch (\Exception $e) {
-          return redirect()->back() ->with('alert', 'Invalid User Name or Password!');
-
+         // return redirect()->back() ->with('alert', 'Invalid User Name or Password!');
+         echo "$userRecord with error";
         }
     }
-
+     public function view_register()
+    {
+        return view('register');
+    }
 
 }

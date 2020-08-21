@@ -1,25 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Route::get('/admin','TripController@view_admin');
+Route::post('/admin','ClientController@login');
+Route::post('/admin_','TripController@submit_trip')->name('Add_Trip');
+Route::post('/admin_filter','TripController@selectSomeTrips');
+Route::post('/admin_all_trips','TripController@selectAllTrips');
+Route::post('/register','ClientController@view_register');
+Route::get('/', 'CityController@selectCities')->name('add');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::post('/try','ClientController@Addusers')->name('registerpost');
-Route::get('/login', 'TripController@view_admin')->name('login');
-Route::post('/admin', 'TripController@submit_trip')->name('add');
+
+//Route::post('/admin', 'TripController@submit_trip')->name('add');
+
 Route::get('/register', function () {
     return view('register');
 })->name('register');
 Route::post('/submit','ClientController@login');
-Route::get('/admin/government/{id}','TripController@selectSomeTrips');
-Route::get('/admin','TripController@selectAllTrips')->name('admin');
+Route::post('filter_search','TripController@filtertrips');
+Route::get('/main', 'CityController@selectCities')->name('add');
+Route::post('/main', 'TripController@filterTripsDatePost')->name('getTrips');
+//Route::get('/admin','TripController@selectAllTrips')->name('admin');
 Route::post('/admin/filter_search','TripController@filtertrips');
 //Route::post('/submit','ClientController@check_admin');

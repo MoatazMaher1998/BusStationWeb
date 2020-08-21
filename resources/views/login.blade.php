@@ -12,7 +12,7 @@
                             <div align="center" class="card-header">Login page</div>
                             <div class="card-body">
 
-                            <form class="form-horizontal" method="post" action="submit">
+                            <form class="form-horizontal" method="post" action="admin">
                                 {{csrf_field()}} 
 
                                     <div class="form-group">

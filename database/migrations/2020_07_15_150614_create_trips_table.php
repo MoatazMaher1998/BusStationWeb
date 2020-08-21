@@ -22,6 +22,7 @@ class CreateTripsTable extends Migration
             $table->integer('price');
             $table->integer('duration');
             $table->string('time');
+            $table->softDeletes();
             $table->integer('capacity');
             $table->timestamps();
         });

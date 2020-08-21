@@ -7,14 +7,70 @@ use DB;
 use Validator;
 use Input;
 use Illuminate\Http\Request;
-
+use App\client;
 class TripController extends Controller
-{           public function selectAllTrips(){
+    
+{           
+
+    public function submit_ticket(Request $request){
+        
+        for ($i = 0; $i < $request->seats; $i++) {
+            
+            $First_Name = $request->first_name;
+            $SSN = $request->ssn;
+            $Phone = $request->phone;
+            $Nationality = $request->nationality;
+            $Email = $request->email;
+            $Trip_ID = $request->trip_id;
+            $Chair = $request->input('select'.$i);
+            $temp =  DB::select("select * from clients where clients.ssn = '$SSN' AND clients.email = '$Email'");
+             if($temp == null){
+                $temp1 = "select * from clients where clients.ssn = '$SSN'";
+             if($temp1 ==null){
+                DB::table('clients')
+                ->updateOrInsert(
+                    ['email' => $Email],
+                    ['firstname' => $First_Name,'ssn' => $SSN,'isadmin' => '0', 'phonenumber' => $Phone, 'nationality' => $Nationality]
+                );
+                 
+             }
+             else{
+                DB::table('clients')
+                ->where('ssn',$SSN)
+                ->update(['email' => $Email]);
+             }
+                }
+             DB::table('tickets')->insert(['client_id' => $SSN, 'trip_id' => $Trip_ID, 'chair_id' => $Chair]);        
+             DB::table('trips')
+            ->where('id', $Trip_ID)
+            ->decrement('capacity');
+            }
+
+    }
+     public function view_book(Request $request)
+    {   $seats = $request->input('seats');
+        $tripinfo = DB::select("select * from trips WHERE trips.id = '$request->trip_id'");
+        $chairs = DB::select("select chair_id from tickets WHERE trip_id = '$request->trip_id'");
+        return view('book',compact('tripinfo','chairs','seats'));
+    }
+    
+    
+    public function selectAllTrips(){
+    $DATE= date('Y-m-d');
+    $allTrips = DB::select("select * from trips INNER JOiN `buses` WHERE trips.bus_id = buses.id and trips.trip_date >= '$DATE' order by trips.trip_date ");
+
+    return view('admin',['info'=>$allTrips]);     
+}
+public function deleteTrip(Request $request){
+    $id=$request->id_number;
+    trip::destroy($id);
     $allTrips = DB::select("SELECT * FROM `trips` INNER JOiN `buses` WHERE trips.bus_id = buses.id" );
     return view('admin',['info'=>$allTrips]);     
 }
+
 public function selectSomeTrips(Request $request){
-$sql="select * from trips INNER JOIN `buses` where (from_city_name = '".$request->city."' OR to_city_name='".$request->city."') AND trips.bus_id = buses.id " ;
+    $DATE= date('Y-m-d');
+$sql="select * from trips INNER JOIN `buses` where (from_city_name = '".$request->city."' OR to_city_name='".$request->city."') AND trips.bus_id = buses.id and trips.trip_date >= '$DATE' order by trips.trip_date" ;
 $allTrips = DB::select($sql);    
 return view('admin',['info'=>$allTrips]);}
     public function view_main(){
@@ -35,26 +91,27 @@ public function filtertrips(Request $request){
     return view('admin',['info'=>$allTrips]);
 }
 public function filterTripsDatePost(Request $request){
-   
+    
     $from_city_name=$request->fromCity;
     $to_city_name=$request->toCity;
     if($from_city_name ==$to_city_name ){
         return redirect()->back()->with('alert', 'Please Change Your Destination!');
     }
     $from_date=$request->fromDate;
-    $to_date=$request->toDate;
     $number=$request->number;
     $trips=DB::table('trips')
-    ->where([['from_city_name','=',$from_city_name],['to_city_name','=',$to_city_name],['trip_date','=',$from_date],['capacity','>=',$number]])
+    ->where([['from_city_name','=',$from_city_name],['to_city_name','=',$to_city_name],['trip_date','=',$from_date],['capacity','>=',$number]]) 
    ->get();
    foreach($trips as $trip){
-     $id=$trip->bus_id;
-     $trip->bus_type=bus::find($id)->type;
+    $id=$trip->bus_id;
+    $trip->bus_type=bus::find($id)->type;
+     $trip->times=date_create($trip->time);
+     date_add($trip->times,date_interval_create_from_date_string((string)$trip->duration .' hours'));
    }
-
-   echo $trips;
-   //return view('',[trips=>$trips]);
+   $numberofseats = $request->input('number');
+   return view('trips',['trips'=>$trips],['Seats'=>$numberofseats]);
  }
+
 public function submit_trip(Request $request){
      $trip = new trip();
      $trip->from_city_name = $request->fromCity;

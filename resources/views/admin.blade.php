@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -18,7 +19,9 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Basic Table | Creative - Bootstrap 3 Responsive Admin Template</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<title>Basic Table | Creative - Bootstrap 3 Responsive Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="{{ url('css/bootstrap.min.css') }}"  rel="stylesheet">
@@ -294,6 +297,13 @@
                     <td>{{ $tripData->duration }}</td>
                     <td>{{ $tripData->price }}</td>
                     <td>{{ $tripData->capacity }}</td>
+                    <td>
+                    <form action="deleteTrip" method="post" onSubmit="return confirm('Are you sure?')">
+                      @csrf
+                      <input type="hidden" name="id_number" value={{$tripData->id}}>
+                        <input type="submit" value="x"  style="border:none;background-color:white" >
+                      </form>
+                    </td>
                     </tr>
                   @endforeach
 								   

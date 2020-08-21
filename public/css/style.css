@@ -983,6 +983,18 @@ ul.sidebar-menu li.active a i {
 
 }
 
+/*.register:hover,
+.register:focus,
+.register:active,
+.register{
+	  color: #fed189;
+  border-color: #fed189;
+  background: #00a0df;  
+	height: 40px;
+}
+	*/
+
+
 .box1 {
 
     font-size: 16px;
@@ -2162,6 +2174,8 @@ div[data-role="editor-toolbar"] {
 
 }
 
+
+
 .panel .panel-heading .panel-title {
 
   line-height: 40px;
@@ -2322,7 +2336,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-.panel .panel-body.no-padding {
+.panel .panel-body .no-padding {
 
   padding: 0;
 
@@ -2390,7 +2404,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-}
+
 
 .panel.panel-default.panel-heading {
 
@@ -3004,7 +3018,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-* /Widget-Content */
+/* Widget-Content */
 
 
 
@@ -3360,7 +3374,7 @@ div[data-role="editor-toolbar"] {
 
 /*-----	map-----*/
 
-* Google maps */
+/* Google maps */
 
 
 
@@ -9903,3 +9917,5 @@ span.customSelect.changed {
 #sendmessage.show, #errormessage.show, .show {
 	display:block;
 }
+
+
